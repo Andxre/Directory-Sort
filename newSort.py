@@ -6,11 +6,13 @@ import datetime
 #Constant vars
 program = "newSort.py"
 
+#Grabs path to Current Directory
 def getDirectory():
 	currentDir = os.getcwd()
 	print("Current Directory: {}".format(currentDir))
 	return currentDir
 	
+#Lists files in current directory and their last modification date
 def view(currentDir):
 	files = os.listdir(currentDir)
 	for f in files:
@@ -23,6 +25,7 @@ def view(currentDir):
 			print("\033[32m{} \033[33mwas last modified on {}".format(f, time))
 	return files
 
+#Creates new Directories based on modification date
 def newDir(files):
 	for f in files:
 		time = os.path.getmtime(f)
@@ -31,6 +34,7 @@ def newDir(files):
 			os.makedirs(time)
 			print("Folder " + "\033[32m" + str(time) + "\033[0m" + " was created!")
 
+#Sorts files in current Directory into respective date folders
 def sort(files, destination):
 	for f in files:
 		if (f != program):
